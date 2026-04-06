@@ -1,0 +1,19 @@
+# Render Blueprint — auto-configures your Web Service
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: ulmip-backend
+    runtime: java
+    plan: free
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/ulmip-backend.jar
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_URL
+        sync: false   # Set this manually in Render dashboard
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+    healthCheckPath: /api/health-check
