@@ -1,12 +1,23 @@
 package com.ulmip;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableAsync
+@EnableScheduling
 public class UlmipApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(UlmipApplication.class, args);
-        System.out.println("🧠 ULMIP Backend Running on http://localhost:8080");
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }
